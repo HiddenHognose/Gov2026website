@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Involved | {name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div id="slogan-banner"></div>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Get Involved</h1>
+      <p>Every puzzle needs every piece. Be one of ours! 🧩</p>
+    </div>
+  </div>
+
+  <!-- Volunteer opportunities -->
+  <section>
+    <div class="container">
+      <div class="section-title reveal"><h2>Ways to Help</h2></div>
+      <div class="grid grid-4">
+        <div class="card volunteer reveal">
+          <div class="icon">🎨</div><h3>Poster Making</h3>
+          <p>Design and hang posters around school. Art skills optional, enthusiasm required!</p>
+        </div>
+        <div class="card volunteer reveal">
+          <div class="icon">📣</div><h3>Spread the Word</h3>
+          <p>Talk to friends, share the platform, and hand out stickers between classes.</p>
+        </div>
+        <div class="card volunteer reveal">
+          <div class="icon">📱</div><h3>Social Media</h3>
+          <p>Repost, make TikToks, and help run the campaign accounts.</p>
+        </div>
+        <div class="card volunteer reveal">
+          <div class="icon">🎤</div><h3>Speech Day Crew</h3>
+          <p>Help with signs, chants, and cheering at the election assembly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sign-up form -->
+  <section class="alt-bg">
+    <div class="container" style="max-width:760px">
+      <div class="section-title reveal">
+        <h2>Join the Team</h2>
+        <p>Sign up and we'll let you know about the next meeting.</p>
+      </div>
+      <form class="form-card reveal" data-store="signups"
+            data-thanks="Welcome to the team, {who}! 🧩 Watch for a message about our next meeting.">
+        <div class="form-row">
+          <div>
+            <label for="name">Your Name *</label>
+            <input id="name" name="name" required placeholder="First and last name">
+          </div>
+          <div>
+            <label for="grade">Grade *</label>
+            <select id="grade" name="grade" required>
+              <option value="">Choose...</option>
+              <option>9th</option><option>10th</option><option>11th</option><option>12th</option>
+            </select>
+          </div>
+        </div>
+        <label for="email">School Email *</label>
+        <input id="email" name="email" type="email" required placeholder="you@school.edu">
+
+        <label>I want to help with... (pick any)</label>
+        <div class="checks">
+          <label><input type="checkbox" name="interests" value="posters"> 🎨 Posters</label>
+          <label><input type="checkbox" name="interests" value="word"> 📣 Spreading the word</label>
+          <label><input type="checkbox" name="interests" value="social"> 📱 Social media</label>
+          <label><input type="checkbox" name="interests" value="speech"> 🎤 Speech day</label>
+        </div>
+
+        <label for="why">Anything else? (optional)</label>
+        <textarea id="why" name="why" rows="3" placeholder="Skills, ideas, or why you're joining"></textarea>
+
+        <div class="btn-row"><button class="btn btn-red" type="submit">Count Me In!</button></div>
+        <div class="form-success" role="status"></div>
+      </form>
+      <p class="counter"><b id="team-count">47</b> students on Team <span data-c="firstName"></span> so far!</p>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script src="../script.js"></script>
+</body>
+</html>

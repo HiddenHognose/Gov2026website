@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media | {name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div id="slogan-banner"></div>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Media Center</h1>
+      <p>Video, photos, memes, and campaign socials</p>
+    </div>
+  </div>
+
+  <!-- Video -->
+  <section>
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Campaign Video</h2>
+        <p>A 60-second intro from <span data-c="firstName"></span></p>
+      </div>
+      <div class="video-box reveal">
+        <!--
+          TO ADD YOUR VIDEO:
+          Option A (YouTube): delete the <div> below and paste:
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" allowfullscreen></iframe>
+          Option B (file): put video.mp4 in the "images" folder and paste:
+            <video src="../images/video.mp4" controls></video>
+        -->
+        <div>
+          <div class="play">▶</div>
+          <p>Your campaign video goes here!<br><small>(see the instructions in media.html)</small></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photos -->
+  <section class="alt-bg">
+    <div class="container">
+      <div class="section-title reveal"><h2>Campaign Photos</h2></div>
+      <!-- Replace each placeholder <div> with <img src="../images/yourphoto.jpg" alt="..."> -->
+      <div class="gallery">
+        <figure class="reveal"><div class="photo-placeholder">📸 Putting up posters</div><figcaption>Poster party with the team</figcaption></figure>
+        <figure class="reveal"><div class="photo-placeholder">📸 At the game</div><figcaption>Cheering on the <span data-c="mascot"></span></figcaption></figure>
+        <figure class="reveal"><div class="photo-placeholder">📸 Food drive</div><figcaption>Key Club canned food drive</figcaption></figure>
+        <figure class="reveal"><div class="photo-placeholder">📸 Tutoring</div><figcaption>Peer tutoring after school</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Memes & graphics -->
+  <section>
+    <div class="container">
+      <div class="section-title reveal"><h2>Campaign Memes</h2><p>Share these! 😎</p></div>
+      <div class="grid grid-4">
+        <div class="meme reveal" style="background:#1e2470">
+          <div>When the Wi-Fi finally loads</div>
+          <div class="emoji">😭🙌</div>
+          <div>Vote <span data-c="firstName"></span></div>
+        </div>
+        <div class="meme reveal" style="background:#cc3333">
+          <div>Citizens waiting for the State of the Classroom address</div>
+          <div class="emoji">👀📜</div>
+          <div>Monthly with President <span data-c="firstName"></span></div>
+        </div>
+        <div class="meme reveal" style="background:#0fc0e0">
+          <div>That one puzzle piece that won't fit</div>
+          <div class="emoji">🧩😤</div>
+          <div>We'll make it fit</div>
+        </div>
+        <div class="meme reveal" style="background:#3d44d1">
+          <div>Free chocolate for every citizen?</div>
+          <div class="emoji">🍫👀</div>
+          <div>Say less</div>
+        </div>
+      </div>
+
+      <div class="section-title reveal" style="margin-top:48px"><h3>Official Campaign Logo</h3></div>
+      <div style="display:flex;justify-content:center" class="reveal" data-logo="240"></div>
+    </div>
+  </section>
+
+  <!-- Mock social media -->
+  <section class="alt-bg" id="social">
+    <div class="container">
+      <div class="section-title reveal">
+        <h2>Follow the Campaign</h2>
+        <p>Our pretend social media: <strong data-c="instagram"></strong></p>
+        <div class="btn-row" style="justify-content:center"><a class="btn btn-red" href="../instantgram/">📸 Open Instantgram</a><a class="btn btn-gold" href="../toktik/">🎵 Open TokTik</a></div>
+      </div>
+      <div class="grid grid-3">
+
+        <div class="phone reveal">
+          <div class="phone-top"><div class="avatar" data-c="initials"></div><span data-c="instagram"></span></div>
+          <div class="post-img" style="background:linear-gradient(90deg,#cc3333,#3d44d1)">Only 5 days until election day! 🧩</div>
+          <div class="post-body">
+            <div class="actions">❤️ 💬 📤</div>
+            <strong>214 likes</strong><br>
+            <strong data-c="instagram"></strong> Countdown is ON ⏰ Who's ready?? <span data-c="hashtag"></span>
+          </div>
+        </div>
+
+        <div class="phone tiktok reveal">
+          <div class="phone-top"><div class="avatar" style="background:#000" data-c="initials"></div><span data-c="tiktok"></span> · TokTik</div>
+          <div class="post-img">POV: you just found out every citizen gets chocolate 🍫</div>
+          <div class="post-body">
+            <div class="actions">❤️ 1.2K · 💬 88 · ↪️ 45</div>
+            ♬ original sound · <span data-c="hashtag"></span>
+          </div>
+        </div>
+
+        <div class="phone reveal">
+          <div class="phone-top"><div class="avatar" data-c="initials"></div><span data-c="instagram"></span></div>
+          <div class="post-img" style="background:#1e2470">Poster party Thursday after school 🎨 Room 204</div>
+          <div class="post-body">
+            <div class="actions">❤️ 💬 📤</div>
+            <strong>167 likes</strong><br>
+            <strong data-c="instagram"></strong> Bring markers. We bring snacks. 🍪 <span data-c="hashtag"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script src="../script.js"></script>
+</body>
+</html>

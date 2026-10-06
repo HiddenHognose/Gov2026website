@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instantgram | {name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Grand+Hotel&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div id="slogan-banner"></div>
+
+  <main class="app-wrap">
+    <div class="container">
+      <p class="mock-note">📱 This is a pretend social media page made for our campaign project. Click any post to open it!</p>
+
+      <div class="ig">
+        <div class="ig-top">
+          <span class="ig-wordmark">Instantgram</span>
+          <span class="ig-top-icons" aria-hidden="true">🤍 💬 ➕</span>
+        </div>
+
+        <!-- Profile -->
+        <div class="ig-profile">
+          <div class="ring"><img data-ig-avatar alt=""></div>
+          <div>
+            <div class="ig-name-row">
+              <span class="ig-handle"><span data-c="instagram"></span> <span class="verified" title="Verified (pretend)">✔</span></span>
+              <button class="ig-btn" id="follow-btn">Follow</button>
+            </div>
+            <ul class="ig-stats">
+              <li><b id="post-count">0</b> posts</li>
+              <li><b id="follower-count">312</b> followers</li>
+              <li><b>27</b> following</li>
+            </ul>
+            <div class="ig-bio">
+              <b><span data-c="name"></span> for Class President 🧩</b><br>
+              <span data-c="position"></span><br>
+              “<span data-c="slogan"></span>”<br>
+              🦅 <span data-c="school"></span> <span data-c="mascot"></span><br>
+              <a href="../involved/">🔗 Join the team!</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story highlights (link to site pages) -->
+        <div class="ig-highlights">
+          <a href="../platform/"><span>📋</span>Platform</a>
+          <a href="../promises/"><span>🎬</span>Promises</a>
+          <a href="../merch/"><span>👕</span>Merch</a>
+          <a href="../involved/"><span>🙋</span>Join</a>
+          <a href="../contact/"><span>💡</span>Q&amp;A</a>
+          <a href="../toktik/"><span>🎵</span>TokTik</a>
+        </div>
+
+        <div class="ig-tabs"><span class="on">▦ POSTS</span><span>▶ REELS</span><span>☆ TAGGED</span></div>
+        <div class="ig-grid" id="ig-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Post pop-up -->
+  <div class="ig-modal" id="ig-modal" role="dialog" aria-modal="true" aria-label="Post">
+    <div class="ig-post">
+      <div id="modal-media"></div>
+      <div class="ig-side">
+        <div class="ig-side-head">
+          <img data-ig-avatar alt="">
+          <span data-c="instagram"></span>
+          <button class="ig-close" id="modal-close" aria-label="Close">×</button>
+        </div>
+        <div class="ig-comments" id="modal-comments"></div>
+        <div class="ig-actions">
+          <button id="like-btn" aria-label="Like">🤍</button><button aria-label="Comment" onclick="document.getElementById('comment-input').focus()">💬</button><button aria-label="Share" id="share-btn">📤</button>
+          <div class="likes" id="modal-likes"></div>
+          <div class="when" id="modal-when"></div>
+        </div>
+        <form class="ig-add" id="comment-form">
+          <input id="comment-input" placeholder="Add a comment..." maxlength="150" autocomplete="off">
+          <button type="submit">Post</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+
+  <footer id="site-footer"></footer>
+  <script src="../script.js"></script>
+  <script>
+    /* ===== The posts. Add, remove, or edit these! =====
+       img:   a picture from the images folder (or leave it out to make a text post)
+       bg:    background color behind the picture/text
+       text:  big words on a text post        emoji: big emoji on a text post   */
+    const POSTS = [
+      { text: "Election Day: 3 days left", emoji: "⏳🗳️", bg: "#cc3333",
+        caption: "3 days left! Tell a friend, tell a neighbor, tell the citizen who sits next to you. 🗳️ #VoteCody",
+        likes: 276, when: "3 hours ago",
+        comments: [["maya.r", "already decided 😤🧩"], ["ben", "setting a reminder rn"], ["nora", "LET'S GOOO"]] },
+      { img: "images/cody-cutout.png", cover: true, bg: "#1e2470",
+        caption: "Suit: ironed. Speech: written. Puzzle pieces: assembled. Ready to serve the 4th Period USA. 👔🧩",
+        likes: 318, when: "1 day ago",
+        comments: [["priya.d", "PRESIDENTIAL. 🔥"], ["sam.k", "the tie goes hard"], ["liam", "campaign photo of the year"]] },
+      { text: "Town Hall this week", emoji: "🏛️", bg: "#0fc0e0",
+        caption: "Bring your questions, bring your ideas. Every citizen of the 4th Period USA gets a real answer. 🏛️",
+        likes: 142, when: "1 day ago",
+        comments: [["jules", "can I ask about the chocolate"], ["zoe", "^ same question"]] },
+      { text: "4 issues. 4 pieces.", emoji: "🌈💵🏥🌍", bg: "#fff", dark: true,
+        caption: "LGBTQ rights, government debt, healthcare costs, and foreign issues. Read where I stand on the Platform page (link in bio). 📋",
+        likes: 231, when: "1 day ago",
+        comments: [["alex_m", "reading it now"], ["nora", "love that it's all in one place"]] },
+      { text: "Official National Bird: The Eagle", emoji: "🦅", bg: "linear-gradient(135deg,#cc3333,#3d44d1)",
+        caption: "Proposal #1 for the 4th Period USA: the Eagle becomes our national bird. Any objections? (There are no objections.) 🦅",
+        likes: 264, when: "2 days ago",
+        comments: [["coach_t", "GO EAGLES"], ["ethan_p", "pigeon had a chance tbh"], ["maya.r", "@ethan_p no it did not 😭"]] },
+      { text: "Presidential Pencil Pardons", emoji: "✏️🙏", bg: "#1e2470",
+        caption: "Forgot your pencil? As President, I'll grant every citizen one official pardon. Mercy is a presidential power. ✏️",
+        likes: 357, when: "2 days ago",
+        comments: [["ben", "I need like 4 of these"], ["jules", "most important promise honestly"], ["sam.k", "✏️✏️✏️"]] },
+      { img: "images/cody-cutout.png", cover: true, bg: "linear-gradient(90deg,#cc3333,#fff 50%,#3d44d1)",
+        caption: "It's official! 🎉 I'm running for class president. Let's build something great, piece by piece. 🧩",
+        likes: 248, when: "2 days ago",
+        comments: [["maya.r", "FINALLY 🙌🙌"], ["ethan_p", "you have my vote"], ["priya.d", "best candidate fr 🧩"]] },
+      { text: "Fitting America together piece by piece", bg: "linear-gradient(90deg,#cc3333,#fff 50%,#3d44d1)", dark: true,
+        caption: "Our slogan. Every person in 4th period is a piece of the puzzle. 🗽",
+        likes: 197, when: "2 days ago", comments: [["sam.k", "this is so good"], ["jules", "chills ngl"]] },
+      { img: "images/logo-circle.png", bg: "#fff",
+        caption: "Meet our logo! The last piece is still on its way... that piece is YOU. 🧩",
+        likes: 176, when: "3 days ago", comments: [["alex_m", "the design 🔥"], ["nora", "wait this is clever"]] },
+      { text: "When the Wi-Fi finally loads", emoji: "😭🙌", bg: "#1e2470",
+        caption: "Some problems are bigger than others. Check out my real platform on the website (link in bio). 📋",
+        likes: 341, when: "4 days ago", comments: [["ben", "this is literally me every day"], ["maya.r", "😂😂😂"]] },
+      { img: "images/puzzle-pieces.png", bg: "#fff",
+        caption: "Piece by piece. 🧩 #PieceByPiece",
+        likes: 154, when: "5 days ago", comments: [["liam", "aesthetic"]] },
+      { text: "National Chocolate Day", emoji: "🍫", bg: "#cc3333",
+        caption: "Campaign promise: every citizen of the 4th Period USA will be given chocolate. Allergy-friendly options included. 🍫",
+        likes: 402, when: "6 days ago", comments: [["ethan_p", "I'm voting for the chocolate tbh"], ["zoe", "dark chocolate or I riot"]] },
+      { img: "images/heritage-logo.png", bg: "#fff",
+        caption: "Proud to be a Heritage Eagle. 🦅 Let's make 4th period the best class in the building.",
+        likes: 223, when: "1 week ago", comments: [["coach_t", "Go Eagles!"], ["sam.k", "🦅🦅🦅"]] },
+      { text: "I'm the missing piece", emoji: "🧩", bg: "#0fc0e0",
+        caption: "New sticker design just dropped. Vote for your favorite on the Merch page! 👕",
+        likes: 188, when: "1 week ago", comments: [["nora", "I need this on my laptop"]] },
+      { text: "What do I get if I win? Bragging rights.", emoji: "😎🏆", bg: "#3d44d1",
+        caption: "Let's be honest: the prize is bragging rights. But they will be EPIC bragging rights, and I'm sharing them with all of 4th period. 🧩🗽",
+        likes: 289, when: "1 week ago", comments: [["jules", "the most honest campaign in history"], ["ben", "I want my share of the bragging rights"], ["mr_s_fan", "😂😂"]] },
+    ];
+
+    const $ = id => document.getElementById(id);
+    const store = {
+      get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } },
+      set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+    };
+    const esc = s => s.replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+    document.querySelectorAll("[data-ig-avatar]").forEach(img => img.src = url(CAMPAIGN.logo));
+
+    function tileHTML(p) {
+      if (p.img) return `<img src="${url(p.img)}" alt="" class="${p.cover ? "cover" : ""}">`;
+      return `<div class="tile-text" style="${p.dark ? "color:#1e2470" : ""}">${p.emoji ? `<span class="tile-emoji">${p.emoji}</span>` : ""}${p.text}</div>`;
+    }
+    const likeCount = (p, i) => p.likes + (store.get("ig-like-" + i, false) ? 1 : 0);
+    const allComments = (p, i) => p.comments.concat(store.get("ig-comments-" + i, []));
+
+    function renderGrid() {
+      $("ig-grid").innerHTML = POSTS.map((p, i) =>
+        `<button class="ig-tile" style="background:${p.bg}" data-i="${i}"
+           data-stats="❤️ ${likeCount(p, i)}   💬 ${allComments(p, i).length}" aria-label="Open post ${i + 1}">${tileHTML(p)}</button>`
+      ).join("");
+      $("post-count").textContent = POSTS.length;
+    }
+
+    // Pop-up
+    let open = -1;
+    function showPost(i) {
+      open = i; const p = POSTS[i];
+      $("modal-media").innerHTML = `<div class="ig-tile" style="background:${p.bg}">${tileHTML(p)}</div>`;
+      $("modal-comments").innerHTML =
+        `<p><b>${CAMPAIGN.instagram}</b> ${p.caption}</p>` +
+        allComments(p, i).map(([u, t]) => `<p><b>${esc(u)}</b> ${esc(t)}</p>`).join("");
+      const liked = store.get("ig-like-" + i, false);
+      $("like-btn").textContent = liked ? "❤️" : "🤍";
+      $("modal-likes").textContent = `${likeCount(p, i)} likes`;
+      $("modal-when").textContent = p.when;
+      $("ig-modal").classList.add("open");
+    }
+    function closePost() { $("ig-modal").classList.remove("open"); open = -1; renderGrid(); }
+
+    $("ig-grid").addEventListener("click", e => { const t = e.target.closest(".ig-tile"); if (t) showPost(+t.dataset.i); });
+    $("modal-close").onclick = closePost;
+    $("ig-modal").addEventListener("click", e => { if (e.target.id === "ig-modal") closePost(); });
+    document.addEventListener("keydown", e => { if (e.key === "Escape" && open >= 0) closePost(); });
+
+    $("like-btn").onclick = () => {
+      store.set("ig-like-" + open, !store.get("ig-like-" + open, false));
+      showPost(open);
+      $("like-btn").classList.remove("pop"); void $("like-btn").offsetWidth; $("like-btn").classList.add("pop");
+    };
+    $("comment-form").onsubmit = e => {
+      e.preventDefault();
+      const text = $("comment-input").value.trim();
+      if (!text) return;
+      const mine = store.get("ig-comments-" + open, []);
+      mine.push(["you", text]);
+      store.set("ig-comments-" + open, mine);
+      $("comment-input").value = "";
+      showPost(open);
+      $("modal-comments").scrollTop = 1e6;
+    };
+
+    function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); }
+    $("share-btn").onclick = async () => {
+      try { await navigator.clipboard.writeText(location.href.split("#")[0]); toast("Link copied! 📋"); }
+      catch (e) { toast("Share this page with your friends! 📤"); }
+    };
+
+    // Follow button
+    function renderFollow() {
+      const f = store.get("ig-follow", false);
+      $("follow-btn").textContent = f ? "Following ✓" : "Follow";
+      $("follow-btn").classList.toggle("following", f);
+      $("follower-count").textContent = 312 + (f ? 1 : 0);
+    }
+    $("follow-btn").onclick = () => { store.set("ig-follow", !store.get("ig-follow", false)); renderFollow(); };
+
+    renderGrid();
+    renderFollow();
+  </script>
+</body>
+</html>

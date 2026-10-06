@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TokTik | {name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div id="slogan-banner"></div>
+
+  <main class="app-wrap">
+    <div class="container">
+      <p class="mock-note">📱 This is a pretend video app made for our campaign project. Scroll inside the phone, and double-click a video to like it!</p>
+
+      <div class="tt-phone">
+        <div class="tt-brand">TokTik</div>
+        <div class="tt-topbar"><span>Following</span><span class="on">For You</span></div>
+        <div class="tt-feed" id="tt-feed"></div>
+      </div>
+      <p class="tt-hint">⬆️⬇️ Scroll or swipe inside the phone for more videos</p>
+    </div>
+  </main>
+  <div class="toast" id="toast"></div>
+
+  <footer id="site-footer"></footer>
+  <script src="../script.js"></script>
+  <script>
+    /* ===== The "videos". Add, remove, or edit these! =====
+       bg: background   stage: what shows in the middle   caption + sound: bottom text */
+    const P = path => url(path);
+    const VIDEOS = [
+      { bg: "linear-gradient(160deg,#1e2470,#3d44d1 60%,#0fc0e0)",
+        stage: `<img class="tt-photo" src="${P(CAMPAIGN.photo)}" alt="Cody"><div class="tt-big">Hi, I'm Cody 👋<br>and I'm running for president<br>of the 4th period USA 🗽</div>`,
+        caption: "Day 1 of my campaign. Like if you're voting Cody! 🧩 #PieceByPiece #4thPeriodUSA",
+        sound: "original sound · Cody for President", likes: 1204, comments: 88, shares: 45 },
+      { bg: "#000",
+        stage: `<div class="tt-emoji">🍫</div><div class="tt-big">POV: your president just promised every citizen chocolate</div>`,
+        caption: "This is a real campaign promise btw 🍫 #NationalChocolateDay",
+        sound: "dramatic orchestra · chocolate reveal", likes: 2391, comments: 140, shares: 97 },
+      { bg: "linear-gradient(160deg,#cc3333,#7a1d1d)",
+        stage: `<div class="tt-big">My 4 big issues for<br>the 4th Period USA:</div>
+                <ul class="tt-list"><li>🌈 LGBTQ rights</li><li>💵 Government debt</li><li>🏥 Healthcare costs</li><li>🌍 Foreign issues</li></ul>`,
+        caption: "The platform, in 10 seconds. Full version on the website 📋",
+        sound: "ticking clock · 10 second challenge", likes: 987, comments: 61, shares: 33 },
+      { bg: "linear-gradient(90deg,#f3c4c4,#fff 50%,#c4c7f3)",
+        stage: `<img class="tt-pieces" src="${P(CAMPAIGN.puzzlePieces)}" alt="Puzzle pieces"><div class="tt-big" style="color:#1e2470;text-shadow:none">Fitting America together<br>piece by piece 🧩</div>`,
+        caption: "Every piece matters. Even yours. ESPECIALLY yours. 🗽",
+        sound: "inspirational piano · slowed", likes: 1530, comments: 72, shares: 120 },
+      { bg: "linear-gradient(160deg,#0fc0e0,#1e2470)",
+        stage: `<div class="tt-emoji">😎🏆</div><div class="tt-big">What do I get if I win?<br>Bragging rights.<br>Unlimited bragging rights.</div>`,
+        caption: "Most honest politician in America (4th period edition) 😂 #BraggingRights",
+        sound: "victory fanfare · extended remix", likes: 3012, comments: 205, shares: 188 },
+      { bg: "#fff",
+        stage: `<img class="tt-logo" src="${P(CAMPAIGN.schoolLogo)}" alt="Heritage Eagles"><div class="tt-big" style="color:#1e2470;text-shadow:none">Duet this if you're voting Cody 🦅</div>`,
+        caption: "Go Eagles! Election day is coming, so tell your friends 🗳️",
+        sound: "Heritage fight song · marching band", likes: 1789, comments: 96, shares: 150 },
+      { bg: "linear-gradient(160deg,#1e2470,#000)",
+        stage: `<div class="tt-emoji">✏️⚖️</div><div class="tt-big">POV: you forgot your pencil<br>but the President<br>grants you a pardon</div>`,
+        caption: "Justice. Mercy. Pencils. 🙏 #PencilPardon",
+        sound: "court gavel · bass boosted", likes: 2650, comments: 174, shares: 131 },
+      { bg: "linear-gradient(160deg,#3d44d1,#0fc0e0)",
+        stage: `<div class="tt-big">Rating national bird candidates:</div>
+                <ul class="tt-list"><li>🐦 Pigeon: absolutely not</li><li>🦆 Duck: respectfully no</li><li>🦃 Turkey: Ben Franklin tried</li><li>🦅 Eagle: OBVIOUSLY</li></ul>`,
+        caption: "The results are in. Go Eagles 🦅 #NationalBird",
+        sound: "game show drumroll", likes: 1977, comments: 122, shares: 88 },
+      { bg: "linear-gradient(160deg,#cc3333,#1e2470)",
+        stage: `<img class="tt-photo" src="${P(CAMPAIGN.photo)}" alt="Cody"><div class="tt-big">GRWM to run a nation 👔<br>(a classroom nation)</div>`,
+        caption: "Tie ✔ Speech ✔ Puzzle pieces ✔ #GRWM #4thPeriodUSA",
+        sound: "get ready with me · lofi beat", likes: 1422, comments: 67, shares: 40 },
+      { bg: "linear-gradient(160deg,#0fc0e0,#3d44d1)",
+        stage: `<div class="tt-big">Things the President of the<br>4th Period USA deals with:</div>
+                <ul class="tt-list"><li>📜 State of the Classroom</li><li>🏛️ Town halls</li><li>⚖️ Fair debates</li><li>🍫 Chocolate logistics</li></ul>`,
+        caption: "It's a demanding job but someone has to do it 😤 #PresidentLife",
+        sound: "office work montage music", likes: 1104, comments: 58, shares: 36 },
+      { bg: "#cc3333",
+        stage: `<div class="tt-emoji">⏳</div><div class="tt-big">3 DAYS<br>until Election Day</div><div class="tt-big" style="font-size:1.4rem;margin-top:8px">Vote Cody 🧩</div>`,
+        caption: "Set your reminders ⏰ Tell every citizen you know #VoteCody",
+        sound: "ticking clock · suspense", likes: 2203, comments: 149, shares: 210 },
+    ];
+
+    const $ = id => document.getElementById(id);
+    const store = {
+      get(k, d) { try { return JSON.parse(localStorage.getItem(k)) ?? d; } catch (e) { return d; } },
+      set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
+    };
+    const fmt = n => n >= 1000 ? (n / 1000).toFixed(1).replace(".0", "") + "K" : n;
+
+    function render() {
+      const followed = store.get("tt-follow", false);
+      $("tt-feed").innerHTML = VIDEOS.map((v, i) => {
+        const liked = store.get("tt-like-" + i, false);
+        return `
+        <section class="tt-video" style="background:${v.bg}" data-i="${i}">
+          <div class="tt-stage">${v.stage}</div>
+          <div class="tt-rail">
+            <div class="tt-avatar">
+              <img src="${url(CAMPAIGN.logo)}" alt="${CAMPAIGN.tiktok}">
+              <button class="plus ${followed ? "done" : ""}" data-act="follow" aria-label="Follow">${followed ? "✓" : "+"}</button>
+            </div>
+            <button data-act="like" class="${liked ? "liked" : ""}" aria-label="Like"><span class="ico">${liked ? "❤️" : "🤍"}</span>${fmt(v.likes + (liked ? 1 : 0))}</button>
+            <button data-act="comment" aria-label="Comments"><span class="ico">💬</span>${fmt(v.comments)}</button>
+            <button data-act="share" aria-label="Share"><span class="ico">↪️</span>${fmt(v.shares)}</button>
+          </div>
+          <div class="tt-info">
+            <div class="who">${CAMPAIGN.tiktok}</div>
+            <p>${v.caption}</p>
+            <div class="tt-sound"><span>♬ ${v.sound}</span></div>
+          </div>
+        </section>`;
+      }).join("");
+    }
+
+    function toast(msg) { const t = $("toast"); t.textContent = msg; t.classList.add("show"); setTimeout(() => t.classList.remove("show"), 1800); }
+
+    function setLike(i, on) {
+      store.set("tt-like-" + i, on);
+      const v = VIDEOS[i], btn = $("tt-feed").querySelector(`[data-i="${i}"] [data-act="like"]`);
+      btn.classList.toggle("liked", on);
+      btn.innerHTML = `<span class="ico">${on ? "❤️" : "🤍"}</span>${fmt(v.likes + (on ? 1 : 0))}`;
+    }
+
+    $("tt-feed").addEventListener("click", async e => {
+      const btn = e.target.closest("[data-act]");
+      if (!btn) return;
+      const i = +btn.closest(".tt-video").dataset.i;
+      const act = btn.dataset.act;
+      if (act === "like") setLike(i, !store.get("tt-like-" + i, false));
+      if (act === "follow") {
+        store.set("tt-follow", !store.get("tt-follow", false));
+        const f = store.get("tt-follow", false);
+        document.querySelectorAll('[data-act="follow"]').forEach(b => { b.textContent = f ? "✓" : "+"; b.classList.toggle("done", f); });
+        toast(f ? `Following ${CAMPAIGN.tiktok}! 🎉` : "Unfollowed");
+      }
+      if (act === "comment") toast("Comments are on the Contact page! 💡");
+      if (act === "share") {
+        try { await navigator.clipboard.writeText(location.href.split("#")[0]); toast("Link copied! 📋"); }
+        catch (err) { toast("Share this page with your friends! ↪️"); }
+      }
+    });
+
+    // Double-click a video = like it, with a big heart
+    $("tt-feed").addEventListener("dblclick", e => {
+      const vid = e.target.closest(".tt-video");
+      if (!vid || e.target.closest("[data-act]")) return;
+      setLike(+vid.dataset.i, true);
+      const r = vid.getBoundingClientRect();
+      const h = document.createElement("div");
+      h.className = "tt-heart"; h.textContent = "❤️";
+      h.style.left = (e.clientX - r.left) + "px"; h.style.top = (e.clientY - r.top) + "px";
+      vid.appendChild(h);
+      setTimeout(() => h.remove(), 800);
+    });
+
+    // Shrink each video's text until it fits between the top bar and the caption
+    function fitStages() {
+      document.querySelectorAll(".tt-stage").forEach(stage => {
+        let size = 16;
+        stage.style.fontSize = size + "px";
+        // offsetTop ignores animations (like the bobbing emoji), so the result is stable
+        const overflows = () => [...stage.children].some(el =>
+          el.offsetTop < -1 || el.offsetTop + el.offsetHeight > stage.clientHeight + 1);
+        while (overflows() && size > 8) stage.style.fontSize = (size -= 0.5) + "px";
+      });
+    }
+
+    render();
+    fitStages();
+    addEventListener("resize", fitStages);
+    if (document.fonts) document.fonts.ready.then(fitStages);
+  </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | {name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div id="slogan-banner"></div>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Suggestion Box</h1>
+      <p>Questions, ideas, complaints about the lunch line, all welcome!</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="container grid grid-2" style="align-items:start">
+      <form class="form-card reveal" data-store="suggestions"
+            data-thanks="Thanks, {who}! Your message is in the box. I read every single one. 📬">
+        <h2>Send a Message</h2>
+        <label for="cname">Name (optional, you can stay anonymous)</label>
+        <input id="cname" name="name" placeholder="Your name">
+
+        <label for="type">This is a...</label>
+        <select id="type" name="type">
+          <option>💡 Idea / suggestion</option>
+          <option>❓ Question</option>
+          <option>⚠️ Problem I've noticed</option>
+          <option>🎉 Just saying hi</option>
+        </select>
+
+        <label for="msg">Your message *</label>
+        <textarea id="msg" name="message" rows="6" required placeholder="What's on your mind?"></textarea>
+
+        <div class="btn-row"><button class="btn btn-red" type="submit">Drop It in the Box 📬</button></div>
+        <div class="form-success" role="status"></div>
+      </form>
+
+      <div class="reveal">
+        <div class="card" style="margin-bottom:20px">
+          <div class="icon">✉️</div>
+          <h3>Email</h3>
+          <p>Prefer email? Write to me anytime:<br><a data-mail href="#"></a></p>
+        </div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="icon">🗓️</div>
+          <h3>Find Me in Person</h3>
+          <p>I'm at the campaign table in the cafeteria every Tuesday and Thursday at lunch.</p>
+        </div>
+        <div class="card">
+          <div class="icon">📱</div>
+          <h3>DM the Campaign</h3>
+          <p>Instagram &amp; TikTok: <strong data-c="instagram"></strong><br>Tag your posts <strong data-c="hashtag"></strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script src="../script.js"></script>
+</body>
+</html>

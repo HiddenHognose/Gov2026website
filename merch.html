@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merch | {name}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <header id="site-header"></header>
+  <div id="slogan-banner"></div>
+
+  <div class="page-hero">
+    <div class="container">
+      <h1>Campaign Merch</h1>
+      <p>Mock-up designs. Vote for the ones you'd actually wear!</p>
+    </div>
+  </div>
+
+  <!-- Stickers & buttons -->
+  <section>
+    <div class="container">
+      <div class="section-title reveal"><h2>Stickers &amp; Buttons</h2></div>
+      <div class="grid grid-4">
+
+        <div class="card merch-item reveal">
+          <div class="sticker-wrap">
+            <svg viewBox="0 0 200 200">
+              <defs><clipPath id="btnclip"><circle cx="100" cy="100" r="88"/></clipPath></defs>
+              <circle cx="100" cy="100" r="96" fill="#fff" stroke="#1e2470" stroke-width="6"/>
+              <image href="../images/logo-circle.png" x="12" y="12" width="176" height="176" clip-path="url(#btnclip)"/>
+            </svg>
+          </div>
+          <h3>Logo Button</h3>
+          <p class="price">2.25" pin-back button</p>
+          <button class="vote-btn" data-id="button" data-base="23"></button>
+        </div>
+
+        <div class="card merch-item reveal">
+          <div class="sticker-wrap">
+            <svg viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="flag" x1="0" x2="1">
+                  <stop offset="0" stop-color="#cc3333"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#3d44d1"/>
+                </linearGradient>
+              </defs>
+              <rect x="6" y="55" width="188" height="90" rx="45" fill="url(#flag)" stroke="#1e2470" stroke-width="5"/>
+              <text x="100" y="95" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="24" fill="#1e2470">PIECE BY PIECE</text>
+              <text x="100" y="122" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="20" fill="#1e2470">VOTE <tspan data-c="name"></tspan></text>
+            </svg>
+          </div>
+          <h3>Slogan Sticker</h3>
+          <p class="price">Laptop / water bottle sticker</p>
+          <button class="vote-btn" data-id="slogan" data-base="31"></button>
+        </div>
+
+        <div class="card merch-item reveal">
+          <div class="sticker-wrap">
+            <svg viewBox="0 0 200 200">
+              <!-- single puzzle piece -->
+              <path d="M60 50 h25 a15 15 0 1 1 30 0 h25 v35 a15 15 0 1 1 0 30 v35 h-35 a15 15 0 1 0 -30 0 h-15 z"
+                    fill="#0fc0e0" stroke="#1e2470" stroke-width="6" stroke-linejoin="round"/>
+              <text x="100" y="112" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="30" fill="#fff">I VOTED</text>
+            </svg>
+          </div>
+          <h3>"I Voted" Puzzle Piece</h3>
+          <p class="price">Handed out on election day</p>
+          <button class="vote-btn" data-id="star" data-base="18"></button>
+        </div>
+
+        <div class="card merch-item reveal">
+          <div class="sticker-wrap">
+            <svg viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="92" fill="#9df0ff" stroke="#1e2470" stroke-width="6"/>
+              <text x="100" y="80" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="26" fill="#1e2470">I'M THE</text>
+              <text x="100" y="118" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="40" fill="#cc3333">MISSING</text>
+              <text x="100" y="150" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="26" fill="#1e2470">PIECE 🧩</text>
+            </svg>
+          </div>
+          <h3>Missing Piece Sticker</h3>
+          <p class="price">Die-cut vinyl sticker</p>
+          <button class="vote-btn" data-id="mascot" data-base="27"></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- T-shirts -->
+  <section class="alt-bg">
+    <div class="container">
+      <div class="section-title reveal"><h2>T-Shirt Designs</h2></div>
+      <div class="grid grid-3">
+
+        <div class="card merch-item reveal">
+          <svg viewBox="0 0 240 240">
+            <path d="M70 30 L40 45 L10 85 L40 105 L55 90 L55 220 L185 220 L185 90 L200 105 L230 85 L200 45 L170 30 Q120 60 70 30 Z" fill="#1e2470"/>
+            <text x="120" y="110" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="22" fill="#fff">FITTING AMERICA</text>
+            <text x="120" y="134" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="22" fill="#fff">TOGETHER</text>
+            <text x="120" y="162" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="20" fill="#0fc0e0">PIECE BY PIECE</text>
+          </svg>
+          <h3>The Slogan Tee</h3>
+          <p class="price">Navy tee, white + cyan print</p>
+          <button class="vote-btn" data-id="tee1" data-base="40"></button>
+        </div>
+
+        <div class="card merch-item reveal">
+          <svg viewBox="0 0 240 240">
+            <defs><clipPath id="teeclip"><circle cx="120" cy="120" r="44"/></clipPath></defs>
+            <path d="M70 30 L40 45 L10 85 L40 105 L55 90 L55 220 L185 220 L185 90 L200 105 L230 85 L200 45 L170 30 Q120 60 70 30 Z" fill="#fff" stroke="#ccc" stroke-width="2"/>
+            <image href="../images/logo-circle.png" x="76" y="76" width="88" height="88" clip-path="url(#teeclip)"/>
+            <text x="120" y="190" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="20" fill="#1e2470">TEAM <tspan data-c="firstName"></tspan></text>
+          </svg>
+          <h3>The Logo Tee</h3>
+          <p class="price">White tee, full color logo</p>
+          <button class="vote-btn" data-id="tee2" data-base="35"></button>
+        </div>
+
+        <div class="card merch-item reveal">
+          <svg viewBox="0 0 240 240">
+            <defs>
+              <linearGradient id="teeflag" x1="0" x2="1">
+                <stop offset="0" stop-color="#cc3333"/><stop offset=".5" stop-color="#fff"/><stop offset="1" stop-color="#3d44d1"/>
+              </linearGradient>
+            </defs>
+            <path d="M70 30 L40 45 L10 85 L40 105 L55 90 L55 220 L185 220 L185 90 L200 105 L230 85 L200 45 L170 30 Q120 60 70 30 Z" fill="url(#teeflag)"/>
+            <text x="120" y="110" text-anchor="middle" font-size="34">🧩🧩🧩</text>
+            <text x="120" y="145" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="22" fill="#1e2470">WE JUST FIT</text>
+            <text x="120" y="170" text-anchor="middle" font-family="Bebas Neue, Impact" font-size="18" fill="#1e2470">TOGETHER.</text>
+          </svg>
+          <h3>The Gradient Tee</h3>
+          <p class="price">Red-white-blue fade</p>
+          <button class="vote-btn" data-id="tee3" data-base="52"></button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer id="site-footer"></footer>
+  <script src="../script.js"></script>
+</body>
+</html>
